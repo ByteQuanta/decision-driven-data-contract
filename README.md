@@ -69,7 +69,7 @@ It **decides and acts automatically**.
 
 ## 📦 Project Structure
 
-```
+```text
 data_contract/
 ├── engine/ # Core decision logic
 │ ├── loader.py # Load latest incoming data
