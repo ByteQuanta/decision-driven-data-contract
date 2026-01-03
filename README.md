@@ -44,6 +44,7 @@ This separation mirrors how real ML and data platforms operate at scale.
 
 ## 🏗️ High-Level Architecture
 
+```
 Incoming CSVs
 │
 ▼
