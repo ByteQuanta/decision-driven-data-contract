@@ -1,0 +1,16 @@
+# Contract enforcement policy
+# This file defines when data ingestion must be blocked.
+
+risk:
+  block_threshold: 0.4
+  warn_threshold: 0.25
+
+decisions:
+  block:
+    - BLOCK_AND_ROLLBACK
+  warn:
+    - ALLOW_WITH_ALERT
+
+ci:
+  fail_on:
+    - block

@@ -1,0 +1,74 @@
+dataset:
+  name: user_features
+  owner: data-platform
+  version: 1.0
+  description: >
+    Critical user-level features used by downstream ML models.
+    This contract is decision-driven: violations trigger automated actions.
+
+sla:
+  freshness_minutes: 60
+  row_count:
+    min_ratio: 0.9
+    max_ratio: 1.2
+
+features:
+
+  user_id:
+    type: int
+    nullable: false
+    semantic_role: identifier
+    criticality: tier_1
+    constraints:
+      unique: true
+    on_violation:
+      action: block_pipeline
+      reason: identifier_integrity_broken
+
+  user_age:
+    type: int
+    nullable: true
+    semantic_role: numerical
+    criticality: tier_1
+    constraints:
+      min: 0
+      max: 120
+      null_rate:
+        warn: 0.01
+        fail: 0.05
+    drift:
+      sensitivity: low
+    on_violation:
+      action: rollback_feature
+      fallback_version: v0.9
+      reason: silent_null_explosion
+
+  country_code:
+    type: str
+    nullable: false
+    semantic_role: categorical
+    criticality: tier_2
+    constraints:
+      allowed_values_source: reference_table
+      null_rate:
+        warn: 0.005
+        fail: 0.02
+    drift:
+      sensitivity: medium
+    on_violation:
+      action: allow_with_alert
+      reason: distribution_shift_risk
+
+  signup_days_ago:
+    type: int
+    nullable: false
+    semantic_role: numerical
+    criticality: tier_2
+    constraints:
+      min: 0
+      max: 10000
+    drift:
+      sensitivity: medium
+    on_violation:
+      action: allow_with_alert
+      reason: recency_feature_instability

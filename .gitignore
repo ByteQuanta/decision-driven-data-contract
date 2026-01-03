@@ -1,0 +1,6 @@
+__pycache__/
+.env
+.vscode/
+data/incoming/*
+data/validated/*
+data/rejected/*

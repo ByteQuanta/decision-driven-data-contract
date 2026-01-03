@@ -1,0 +1,3 @@
+{
+  "python.defaultInterpreterPath": "<conda_path>/envs/data_contract/bin/python"
+}
