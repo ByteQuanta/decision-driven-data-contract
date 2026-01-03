@@ -64,6 +64,7 @@ Actions + Audit Log
 
 The system does not ask humans to interpret dashboards.  
 It **decides and acts automatically**.
+```
 
 ---
 
@@ -89,6 +90,7 @@ data_contract/
 ├── contract_check.yml # Policy as code
 ├── pyproject.toml
 └── environment.yml
+```
 
 ---
 
