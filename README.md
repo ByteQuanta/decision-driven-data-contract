@@ -88,7 +88,6 @@ data_contract/
 ├── contract_check.yml # Policy as code
 ├── pyproject.toml
 └── environment.yml
-```
 
 ---
 
